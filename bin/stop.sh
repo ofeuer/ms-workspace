@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-set -eu
 
-export COMPOSE_PROJECT_NAME=microservices-workspace-demo
+export COMPOSE_PROJECT_NAME=msupandrunning
 
-pushd ms-demo-node && make stop
-popd
-pushd ms-demo-golang && make stop
-popd 
+export wkdr=$PWD
+cd $wkdr/ms-flights && make stop
+cd $wkdr/ms-reservations && make stop
 
+cd $wkdr
 make proxystop
+unset wkdr
